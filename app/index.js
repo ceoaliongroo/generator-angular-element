@@ -18,14 +18,14 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'input',
+      name: 'name',
+      message: 'What is the name of you element? (Angular Module)?',
+      default: this.appname // Default to current folder.
     }];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+      this.name = props.name;
 
       done();
     }.bind(this));
