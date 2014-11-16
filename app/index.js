@@ -17,6 +17,11 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
       'Welcome to the Angular Element generator!'
     ));
 
+    // Compose the generator with angular generator.
+    this.composeWith('angular:app', {}, {
+      local: require.resolve('generator-angular')
+    });
+
     var prompts = [{
       type: 'input',
       name: 'name',
