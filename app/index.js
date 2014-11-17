@@ -18,7 +18,7 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
     ));
 
     // Compose the generator with angular generator.
-    this.composeWith('angular:app', {}, {
+    this.composeWith('angular:app', {options: {'skip-welcome-message': true}}, {
       local: require.resolve('generator-angular')
     });
 
