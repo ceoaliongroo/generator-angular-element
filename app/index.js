@@ -51,11 +51,9 @@ AngularElementGenerator.prototype.askFor = function() {
 };
 
 AngularElementGenerator.prototype.writeApp = function() {
-  this.dest.mkdir('app');
-  this.dest.mkdir('app/templates');
-
   this.src.copy('_package.json', 'package.json');
   this.src.copy('_bower.json', 'bower.json');
+  this.src.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
 AngularElementGenerator.prototype.writeProjectFiles = function() {
