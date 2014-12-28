@@ -9,13 +9,16 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
   },
 
+  // Ask for options.
   prompting: this.askFor,
 
+  // Writing files.
   writing: {
     app: this.writeApp,
     projectFiles: this.writeProjectFiles
   },
 
+  // Install dependencies.
   end: {
     install: this.install
   }
@@ -24,31 +27,33 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
 AngularElementGenerator.prototype.askFor = function() {
   var done = this.async();
 
+  // Get folder name as application name.
+  this.appname = path.basename(process.cwd());
+
   // Have Yeoman greet the user.
   this.log(yosay(
-    'Welcome to the Angular Element generator!'
+    'Welcome to the Angular Element a Component Generator!'
   ));
 
+  // Asking user preference.
   var prompts = [{
-    type: 'confirm',
-    name: 'installAngular',
-    message: 'Would you like to install angular application?',
-    default: true
+    type: 'input',
+    name: 'name',
+    message: 'What is the name of the component?',
+    default: this.appname || 'component'
   }];
 
   this.prompt(prompts, function (props) {
-    this.installAngular = props.installAngular;
+    this.name = props.name;
 
     done();
   }.bind(this));
 };
 
 AngularElementGenerator.prototype.writeApp = function() {
-  this.dest.mkdir('app');
-  this.dest.mkdir('app/templates');
-
   this.src.copy('_package.json', 'package.json');
   this.src.copy('_bower.json', 'bower.json');
+  this.src.copy('Gruntfile.js', 'Gruntfile.js');
 };
 
 AngularElementGenerator.prototype.writeProjectFiles = function() {
