@@ -41,10 +41,16 @@ AngularElementGenerator.prototype.askFor = function() {
     name: 'name',
     message: 'What is the name of the component?',
     default: this.appname || 'component'
+  },{
+    type: 'list',
+    name: 'componentType',
+    message: 'What type of component do you want to create?',
+    choices: ['directive', 'service']
   }];
 
   this.prompt(prompts, function (props) {
     this.name = props.name;
+    this.componentType = props.componentType;
 
     done();
   }.bind(this));
@@ -59,6 +65,14 @@ AngularElementGenerator.prototype.writeApp = function() {
 AngularElementGenerator.prototype.writeProjectFiles = function() {
   this.src.copy('editorconfig', '.editorconfig');
   this.src.copy('jshintrc', '.jshintrc');
+
+  // Write files of the type of component selected.
+  if (this.componentType === 'directive') {
+    this.src.copy('app/directive.js', 'app/directive.js');
+  }
+  else {
+    this.src.copy('app/service.js', 'app/service.js');
+  }
 };
 
 AngularElementGenerator.prototype.install = function() {
