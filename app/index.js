@@ -12,7 +12,7 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
   // Ask for options.
   prompting: this.askFor,
 
-  //
+  // Writing files.
   writing: {
     app: this.writeApp,
     projectFiles: this.writeProjectFiles
@@ -35,7 +35,7 @@ AngularElementGenerator.prototype.askFor = function() {
     'Welcome to the Angular Element a Component Generator!'
   ));
 
-  //
+  // Asking user preference.
   var prompts = [{
     type: 'input',
     name: 'name',
