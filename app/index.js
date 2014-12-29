@@ -68,10 +68,19 @@ AngularElementGenerator.prototype.writeProjectFiles = function() {
 
   // Write files of the type of component selected.
   if (this.componentType === 'directive') {
-    this.src.copy('app/directive.js', 'app/directive.js');
+    this.fs.copyTpl(
+      this.templatePath('app/directive.js'),
+      this.destinationPath('app/directives/directive.js'),
+      { name: this.name }
+    );
   }
   else {
-    this.src.copy('app/service.js', 'app/service.js');
+    this.fs.copyTpl(
+      this.templatePath('app/service.js'),
+      this.destinationPath('app/services/service.js'),
+      { name: this.name }
+    );
+    //this.src.copy('app/service.js', 'app/services/service.js', this);
   }
 };
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('elementModule')
-  .service('serviceName', function () {
+angular.module('<%= name %>')
+  .service('service<%= name %>', function () {
     // AngularJS Element Service
   });
