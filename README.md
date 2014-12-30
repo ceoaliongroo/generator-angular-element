@@ -1,6 +1,6 @@
 # Angular Element - generator-angular-element 
 
-Angular Element it's a generator of template of angular elements "Best Practices suggested by the community" (services, modules, plugins, components, webcomponents).
+Angular Element - it's a generator of templates of [AngularJS](https://angularjs.org/) of  "Best Practices suggested by the community" (services, modules, plugins, components, webcomponents).
 
 ### Install
 
