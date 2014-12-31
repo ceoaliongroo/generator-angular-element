@@ -45,7 +45,7 @@ AngularElementGenerator.prototype.askFor = function() {
     type: 'list',
     name: 'componentType',
     message: 'What type of component do you want to create?',
-    choices: ['directive', 'service']
+    choices: ['Directive controller', 'Basic restful service']
   }];
 
   this.prompt(prompts, function (props) {
@@ -74,10 +74,10 @@ AngularElementGenerator.prototype.writeProjectFiles = function() {
 
   // Write files of the type of component selected.
   if (this.componentType === 'directive') {
-    this.template('app/directive.js', 'app/directives/directive.js', module);
+    this.template('app/directive.js', 'app/scripts/directives/directive.js', module);
   }
   else {
-    this.template('app/service.js', 'app/services/service.js', module);
+    this.template('app/service.js', 'app/scripts/services/service.js', module);
   }
 };
 
