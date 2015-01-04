@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('<%= name %>')
-  .service('service<%= name %>', function ($q, $http) {
+  .service('<%= serviceName %>', function ($q, $http) {
     // A private cache key.
     var cache = {};
 
     // Update broadcast name.
-    var broadcastUpdateEventName = '<%= name =%>Change';
+    var broadcastUpdateEventName = '<%= serviceName =%>Change';
 
     /**
      * Return the promise with the collection, from cache or the server.
@@ -14,7 +14,6 @@ angular.module('<%= name %>')
      * @returns {*}
      */
     this.get = function() {
-      var cacheId = companyId + ':' + userId;
       if (cache) {
         return $q.when(cache.data);
       }
