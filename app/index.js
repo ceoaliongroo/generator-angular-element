@@ -70,7 +70,7 @@ AngularElementGenerator.prototype.askForBasicService = function() {
   var prompts = [{
     type: 'input',
     name: 'serviceName',
-    message: 'What is of the service?'
+    message: 'What is name of the service?'
   }];
 
   this.prompt(prompts, function (props) {

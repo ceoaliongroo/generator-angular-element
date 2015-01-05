@@ -6,7 +6,7 @@ angular.module('<%= name %>')
     var cache = {};
 
     // Update broadcast name.
-    var broadcastUpdateEventName = '<%= serviceName =%>Change';
+    var broadcastUpdateEventName = '<%= serviceName %>Change';
 
     /**
      * Return the promise with the collection, from cache or the server.
