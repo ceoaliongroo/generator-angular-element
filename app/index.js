@@ -10,7 +10,10 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
   },
 
   // Ask for options.
-  prompting: this.askFor,
+  prompting: {
+    basic: this.askFor,
+    service: this.askForBasicService
+  },
 
   // Writing files.
   writing: {
@@ -41,10 +44,37 @@ AngularElementGenerator.prototype.askFor = function() {
     name: 'name',
     message: 'What is the name of the component?',
     default: this.appname || 'component'
+  },{
+    type: 'list',
+    name: 'componentType',
+    message: 'What type of component do you want to create?',
+    choices: ['Directive controller', 'Basic restful service']
   }];
 
   this.prompt(prompts, function (props) {
     this.name = props.name;
+    this.componentType = props.componentType;
+
+    done();
+  }.bind(this));
+};
+
+AngularElementGenerator.prototype.askForBasicService = function() {
+  if (this.componentType !== 'Basic restful service') {
+    return;
+  }
+
+  var done = this.async();
+
+  // Asking user preference.
+  var prompts = [{
+    type: 'input',
+    name: 'serviceName',
+    message: 'What is name of the service?'
+  }];
+
+  this.prompt(prompts, function (props) {
+    this.serviceName = props.serviceName;
 
     done();
   }.bind(this));
@@ -57,8 +87,24 @@ AngularElementGenerator.prototype.writeApp = function() {
 };
 
 AngularElementGenerator.prototype.writeProjectFiles = function() {
+  var module;
   this.src.copy('editorconfig', '.editorconfig');
   this.src.copy('jshintrc', '.jshintrc');
+
+  // General properties.
+  module = {
+    name: this.name,
+    serviceName: this.serviceName
+  };
+
+  // Write files of the type of component selected.
+  if (this.componentType === 'Directive controller') {
+    this.template('app/directive.js', 'app/scripts/directives/directive.js', module);
+  }
+  else {
+    this.template('app/basic/service.js', 'app/scripts/services/service.js', module);
+    this.template('app/basic/controller.js', 'app/scripts/controllers/controller.js', module);
+  }
 };
 
 AngularElementGenerator.prototype.install = function() {
