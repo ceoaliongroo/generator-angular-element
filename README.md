@@ -15,7 +15,7 @@ npm install -g generator-angular-element
 To initiate the generator:
 
 ```bash
-yo yeoman-generator-angular-components
+yo angular-element
 ```
 
 ## License
