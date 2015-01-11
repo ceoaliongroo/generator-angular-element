@@ -45,6 +45,16 @@ AngularElementGenerator.prototype.askFor = function() {
     message: 'What is the name of the component?',
     default: this.appname || 'component'
   },{
+    type: 'input',
+    name: 'github-repository',
+    message: 'The URL github repository?',
+    default: ''
+  },{
+    type: 'confirm',
+    name: 'existAngularApp',
+    message: 'Add the component to an exist AngularJS application?',
+    default: true
+  },{
     type: 'list',
     name: 'componentType',
     message: 'What type of component do you want to create?',
@@ -53,6 +63,7 @@ AngularElementGenerator.prototype.askFor = function() {
 
   this.prompt(prompts, function (props) {
     this.name = props.name;
+    this.existAngularApp = props.existAngularApp;
     this.componentType = props.componentType;
 
     done();
@@ -80,16 +91,46 @@ AngularElementGenerator.prototype.askForBasicService = function() {
   }.bind(this));
 };
 
+
+AngularElementGenerator.prototype.askForGithubRepo = function () {
+  if (this.options['github-repo']) {
+    // Get the value from the CLI.
+    this.githubRepo = this.options['github-repo'];
+    this.log('Setting GitHub repository to: ' + this.githubRepo);
+    return;
+  }
+
+  var done = this.async();
+
+  var prompts = [{
+    name: 'githubRepo',
+    message: 'What is the GitHub repository URL?',
+    default: ''
+  }];
+
+  this.prompt(prompts, function (props) {
+    this.githubRepo = props.githubRepo;
+
+    done();
+  }.bind(this));
+
+};
+
 AngularElementGenerator.prototype.writeApp = function() {
+  if (this.existAngularApp) {
+    return
+  }
+
   this.src.copy('_package.json', 'package.json');
   this.src.copy('_bower.json', 'bower.json');
   this.src.copy('Gruntfile.js', 'Gruntfile.js');
+
+  this.src.copy('editorconfig', '.editorconfig');
+  this.src.copy('jshintrc', '.jshintrc');
 };
 
 AngularElementGenerator.prototype.writeProjectFiles = function() {
   var module;
-  this.src.copy('editorconfig', '.editorconfig');
-  this.src.copy('jshintrc', '.jshintrc');
 
   // General properties.
   module = {
