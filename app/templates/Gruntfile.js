@@ -198,6 +198,10 @@ module.exports = function(grunt) {
     'karma:unit'
   ]);
 
+  grunt.registerTask('link', [
+    'test',
+  ]);
+
   grunt.registerTask('build', [
     'clean:dist',
     'concat:dist',
