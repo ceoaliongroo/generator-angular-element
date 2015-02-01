@@ -1,4 +1,4 @@
-describe('<%= name %>', function () {
+describe('<%= name %>Service', function () {
 
   beforeEach(module('<%= module %>'));
 

@@ -18,6 +18,7 @@ var AngularElementGenerator = yeoman.generators.Base.extend({
   // Writing files.
   writing: {
     app: this.writeApp,
+    taskFiles: this.writeTaskFiles,
     projectFiles: this.writeProjectFiles
   },
 
@@ -86,9 +87,17 @@ AngularElementGenerator.prototype.askForBasicService = function() {
 AngularElementGenerator.prototype.writeApp = function() {
   this.src.copy('_package.json', 'package.json');
   this.src.copy('_bower.json', 'bower.json');
-  this.src.copy('Gruntfile.js', 'Gruntfile.js');
   this.src.copy('editorconfig', '.editorconfig');
   this.src.copy('jshintrc', '.jshintrc');
+};
+
+AngularElementGenerator.prototype.writeTaskFiles = function() {
+  if (this.componentType === 'Module') {
+    this.src.copy('../../module/Gruntfile.js', 'Gruntfile.js');
+  }
+  else {
+    this.src.copy('Gruntfile.js', 'Gruntfile.js');
+  }
 };
 
 AngularElementGenerator.prototype.writeProjectFiles = function() {
@@ -96,12 +105,17 @@ AngularElementGenerator.prototype.writeProjectFiles = function() {
 
   // General properties.
   module = {
+    module: this.name,
     name: this.name,
     serviceName: this.serviceName
   };
 
   // Write files of the type of component selected.
-  if (this.componentType === 'Directive controller') {
+  if (this.componentType === 'Module') {
+    this.template('../../module/src/element.js', 'src/' + module.name + '.js', module);
+    this.template('../../module/test/elementSpec.js', 'test/' + module.name + 'Spec.js', module);
+  }
+  else if (this.componentType === 'Directive controller') {
     this.template('app/directive.js', 'app/scripts/directives/directive.js', module);
   }
   else {
