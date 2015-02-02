@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= module %>')
+angular.module('<%= module %>', [])
   .service('<%= name %>Service', function <%= name %>Service() {
     // Test method.
     this.plus = function(a, b) {
