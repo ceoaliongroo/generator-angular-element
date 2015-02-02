@@ -94,6 +94,8 @@ AngularElementGenerator.prototype.writeApp = function() {
 AngularElementGenerator.prototype.writeTaskFiles = function() {
   if (this.componentType === 'Module') {
     this.src.copy('../../module/Gruntfile.js', 'Gruntfile.js');
+    this.src.copy('../../module/test/karma.conf.js', 'karma.conf.js');
+    this.src.copy('../../module/jshintrc', '.jshintrc');
   }
   else {
     this.src.copy('Gruntfile.js', 'Gruntfile.js');
@@ -113,7 +115,7 @@ AngularElementGenerator.prototype.writeProjectFiles = function() {
   // Write files of the type of component selected.
   if (this.componentType === 'Module') {
     this.template('../../module/src/element.js', 'src/' + module.name + '.js', module);
-    this.template('../../module/test/elementSpec.js', 'test/' + module.name + 'Spec.js', module);
+    this.template('../../module/test/spec/elementSpec.js', 'test/spec/' + module.name + 'Spec.js', module);
   }
   else if (this.componentType === 'Directive controller') {
     this.template('app/directive.js', 'app/scripts/directives/directive.js', module);
