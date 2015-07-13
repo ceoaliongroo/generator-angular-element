@@ -7,7 +7,7 @@ In his first stage of development it'll focus in scaffold a new [AngularJS](http
 AngularJS Patterns Generators:
 - Component-Based Directive - [Matias Niemelä](https://github.com/matsko)
 
---Note: If the generator is not liked id because is still WIP.
+__Note:__ If the generator is not liked id because is still WIP.
 
 ### WIP - Disclosure
 
