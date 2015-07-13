@@ -1,7 +1,7 @@
 {
   "name": "generator-angular-element",
   "version": "0.0.1",
-  "description": "Yeoman generator for AngularJS applciation to create modules.",
+  "description": "AngularJS Patterns Generator (Best Practices).",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "ceoaliongroo/generator-angular-element",
@@ -20,7 +20,14 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "angular",
+    "angularjs",
+    "pattern",
+    "best practices",
+    "component",
+    "directive",
+    "module"
   ],
   "dependencies": {
     "yeoman-generator": "^0.17.0",
