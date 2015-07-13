@@ -18,7 +18,7 @@ module.exports = generators.Base.extend({
       type: 'input',
       name: 'name',
       message: 'Write the name of your directive',
-      default: this._pluginName(this.appname)
+      default: ''
     }];
 
     this.prompt(prompts, function (props) {
