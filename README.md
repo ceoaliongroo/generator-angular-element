@@ -1,12 +1,13 @@
 # Angular Element - generator-angular-element 
 
-Angular Element - it's a generator to scaffold of angularjs patterns over [angular generator](https://github.com/yeoman/generator-angular) created by the Yeoman Team.
+Angular Element - it's a generator to scaffold of angularjs patterns, you need to use in conmvination with the [angular generator](https://github.com/yeoman/generator-angular) created by the Yeoman Team.
  
-In his first stage of development it'll focus in scaffold a new [AngularJS](https://angularjs.org/) modules based on "Best Practices suggested by the community" (services, modules, plugins, components, webcomponents). 
+In his first stage of development it'll focus in scaffold a new [AngularJS](https://angularjs.org/) modules based on "Best Practices suggested by the community" (services, modules, plugins, components, etc..). 
 
-For example:
-- [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
-- [Component-Based Directive](https://www.airpair.com/angularjs/posts/component-based-angularjs-directives)
+AngularJS Patterns Generators:
+- Component-Based Directive - [Matias Niemelä](https://github.com/matsko)
+
+--Note: If the generator is not liked id because is still WIP.
 
 ### WIP - Disclosure
 
